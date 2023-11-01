@@ -1,0 +1,15 @@
+const int pressurePin1 = A0; // Analog input pin for pressure sensor
+const float maxVoltage = 3.3; // Maximum voltage supplied to the ADC (in volts)
+const float maxPressure = 200.0; // Maximum pressure range of the sensor (in bar
+
+void setup()
+{
+  // setup code
+}
+
+void loop() {
+int sensorValue1 = analogRead(pressurePin1);
+float voltage1 = sensorValue1 * (maxVoltage / 1023.0);
+float pressure1 = voltage1 * (maxPressure / maxVoltage);
+Serial.println(pressure1);
+}

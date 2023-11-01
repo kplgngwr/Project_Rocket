@@ -1,0 +1,27 @@
+#include <HX711.h>
+
+#define DT_PIN 4// Replace with your actual GPIO pin number for DT
+#define SCK_PIN 33// Replace with your actual GPIO pin number for SCK
+
+HX711 scale;
+
+void setup() {
+  Serial.begin(9600);
+  scale.begin(DT_PIN, SCK_PIN);
+  scale.set_scale(4590);
+  scale.tare();
+}
+
+void loop() {
+  if (scale.is_ready()){
+  //float weight = scale.get_units();
+  Serial.print("Weight: ");
+  //Serial.print(weight);
+  Serial.print(scale.get_units(),2);
+  Serial.println(" kg");
+  }
+  else {
+    Serial.println("HX711 not found.");
+  }
+  delay(1000);
+}
